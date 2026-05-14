@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VenkyFlix</title>
+  <meta name="description" content="Original OTT homepage starter for GitHub Pages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#07111a; --bg-soft:#0d1723; --panel:#101d2c; --panel-2:#142338; --text:#edf4ff; --muted:#9fb1c8; --line:rgba(255,255,255,.1); --accent:#34d2b0; --accent-2:#7a8cff; --danger:#f59e0b; --radius:22px; --shadow:0 20px 60px rgba(0,0,0,.35); --max:1180px;
+      --text-sm:clamp(.9rem,.85rem+.2vw,1rem); --text-base:clamp(1rem,.95rem+.25vw,1.125rem); --text-lg:clamp(1.1rem,1rem+.6vw,1.4rem); --text-xl:clamp(1.6rem,1.2rem+1.5vw,2.5rem); --text-2xl:clamp(2.4rem,1.6rem+3.4vw,4.8rem);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:'Manrope',system-ui,sans-serif;background:radial-gradient(circle at top left, rgba(52,210,176,.18), transparent 22%), radial-gradient(circle at top right, rgba(122,140,255,.15), transparent 20%), linear-gradient(180deg,#07111a,#09131f 40%,#07111a);color:var(--text);font-size:var(--text-base);line-height:1.6}
+    a{text-decoration:none;color:inherit} img{display:block;max-width:100%;height:auto} button{font:inherit;cursor:pointer}
+    .container{width:min(calc(100% - 2rem),var(--max));margin-inline:auto}
+    .top{position:sticky;top:0;z-index:20;background:rgba(7,17,26,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0}
+    .brand{display:flex;align-items:center;gap:.9rem;font-weight:800;letter-spacing:.02em}
+    .brand svg{width:40px;height:40px;color:var(--accent)}
+    .menu{display:flex;gap:1rem;flex-wrap:wrap;color:var(--muted);font-size:var(--text-sm)}
+    .actions{display:flex;gap:.75rem;align-items:center}
+    .btn,.btn-outline{min-height:44px;padding:.8rem 1.1rem;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text)}
+    .btn{background:linear-gradient(135deg,var(--accent),#22c7d6);color:#041117;border:none;font-weight:800}
+    .hero{padding:4rem 0 2rem}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}
+    .tag{display:inline-flex;align-items:center;gap:.55rem;padding:.55rem .9rem;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#cbd5e1}
+    h1{font-family:'Cormorant Garamond',serif;font-size:var(--text-2xl);line-height:.98;max-width:10ch;margin:1rem 0}
+    .lead{max-width:60ch;color:var(--muted)}
+    .row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.6rem}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:30px;padding:1rem;box-shadow:var(--shadow)}
+    .poster{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:24px;background:#0b1622}.poster img{width:100%;height:100%;object-fit:cover}.poster:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 15%,rgba(4,9,15,.2) 50%,rgba(4,9,15,.86) 100%)}
+    .poster-meta{position:absolute;inset:auto 1rem 1rem 1rem;z-index:1}.chips{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:.6rem}.chip{padding:.35rem .65rem;border-radius:999px;background:rgba(255,255,255,.1);font-size:.75rem}
+    section{padding:2.4rem 0}.head{display:flex;justify-content:space-between;gap:1rem;align-items:end;margin-bottom:1rem}.head h2{margin:0;font-size:var(--text-xl)} .head p{margin:0;color:var(--muted);font-size:var(--text-sm)}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:22px;overflow:hidden;transition:.25s ease}.card:hover{transform:translateY(-5px);border-color:rgba(52,210,176,.35);box-shadow:var(--shadow)}
+    .thumb{aspect-ratio:16/10;background:#0d1624}.thumb img{width:100%;height:100%;object-fit:cover}.body{padding:1rem}.meta{color:var(--muted);font-size:.86rem}
+    .feature{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.panel{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:1.1rem}
+    .warn{background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.26);color:#ffd47a}
+    footer{padding:2rem 0 3rem;color:var(--muted);font-size:var(--text-sm)}
+    @media (max-width:980px){.hero-grid,.feature{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.nav{flex-direction:column;align-items:flex-start}.menu{display:grid;grid-template-columns:repeat(2,1fr);width:100%}.actions,.btn,.btn-outline{width:100%}.cards{grid-template-columns:1fr}h1{max-width:12ch}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="VenkyFlix home">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="4"></circle>
+          <path d="M26 20V44M38 20V44M26 22L38 42" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
+        </svg>
+        <span>VenkyFlix</span>
+      </a>
+      <nav class="menu" aria-label="Primary navigation">
+        <a href="#latest">Latest</a>
+        <a href="#originals">Originals</a>
+        <a href="#watch">Watch</a>
+        <a href="#safety">Safety</a>
+      </nav>
+      <div class="actions">
+        <a class="btn-outline" href="#safety">GitHub Safe</a>
+        <a class="btn" href="#watch">Open Demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="tag">Original brand · no impersonation</span>
+          <h1>Build your own public OTT style homepage safely.</h1>
+          <p class="lead">Indha version famous brand copy madhiri illama totally original UI use pannudhu. GitHub Pages-la public ah podumbodhu phishing or impersonation risk reduce aagum. Un content, un brand, un style nu maintain pannu.</p>
+          <div class="row">
+            <a class="btn" href="#latest">Browse titles</a>
+            <a class="btn-outline" href="#safety">Read safe setup</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <div class="poster">
+            <img src="https://picsum.photos/seed/venkyflix-hero/900/1200" alt="Featured cover art" width="900" height="1200" loading="lazy">
+            <div class="poster-meta">
+              <div class="chips"><span class="chip">VenkyFlix Original</span><span class="chip">Demo Showcase</span></div>
+              <h3 style="margin:.35rem 0 .2rem;font-size:1.5rem">Neon Harbour</h3>
+              <p style="margin:0;color:#d1d9e6">Original featured banner block for your OTT portfolio site.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="latest">
+      <div class="container">
+        <div class="head"><div><h2>Latest arrivals</h2><p>Replace demo posters with your own titles.</p></div></div>
+        <div class="cards">
+          <article class="card"><div class="thumb"><img src="https://picsum.photos/seed/vf1/800/500" alt="Poster 1" width="800" height="500" loading="lazy"></div><div class="body"><h3>Code Storm</h3><p class="meta">Tech thriller · 1h 52m</p></div></article>
+          <article class="card"><div class="thumb"><img src="https://picsum.photos/seed/vf2/800/500" alt="Poster 2" width="800" height="500" loading="lazy"></div><div class="body"><h3>Metro Night</h3><p class="meta">Action drama · Tamil</p></div></article>
+          <article class="card"><div class="thumb"><img src="https://picsum.photos/seed/vf3/800/500" alt="Poster 3" width="800" height="500" loading="lazy"></div><div class="body"><h3>Signal Zero</h3><p class="meta">Sci-fi · Dubbed</p></div></article>
+          <article class="card"><div class="thumb"><img src="https://picsum.photos/seed/vf4/800/500" alt="Poster 4" width="800" height="500" loading="lazy"></div><div class="body"><h3>Dust Line</h3><p class="meta">Mystery · 4K</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="originals">
+      <div class="container feature">
+        <div class="panel">
+          <h2 style="margin-top:0">Why this version is better</h2>
+          <ul style="padding-left:1.1rem;display:grid;gap:.6rem;color:var(--muted)">
+            <li>Original logo and name</li>
+            <li>No Prime / Netflix copy text</li>
+            <li>No fake login or password collection</li>
+            <li>Portfolio-friendly public landing page</li>
+          </ul>
+        </div>
+        <div class="panel warn" id="safety">
+          <h2 style="margin-top:0">Safe GitHub setup</h2>
+          <p style="margin-bottom:.6rem">Secrets repo-la podadhe. Public frontend-ku HTML, CSS, JS mattum vechu deploy pannu. Real admin upload feature venumna later backend add pannanum.</p>
+          <p style="margin:0">Use only content you own or have rights to stream publicly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="watch">
+      <div class="container feature">
+        <div class="panel">
+          <h2 style="margin-top:0">Watch preview</h2>
+          <video controls preload="metadata" poster="https://picsum.photos/seed/preview/1280/720" style="width:100%;aspect-ratio:16/9;border-radius:18px;background:#000">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="panel">
+          <h2 style="margin-top:0">Next steps</h2>
+          <ol style="padding-left:1.1rem;display:grid;gap:.6rem;color:var(--muted)">
+            <li>Rename file as <code>index.html</code></li>
+            <li>Push to a public GitHub repo</li>
+            <li>Enable GitHub Pages</li>
+            <li>Replace demo URLs with your own media</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">VenkyFlix starter · original OTT homepage for GitHub Pages.</div>
+  </footer>
+</body>
+</html>
